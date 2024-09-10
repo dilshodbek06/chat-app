@@ -4,7 +4,7 @@ import React from "react";
 const ConversationUser = () => {
   return (
     <div className="py-1 px-3 flex justify-between items-center hover:bg-gray-100 dark:hover:bg-slate-600 cursor-pointer transition-all duration-200">
-      <div className="flex gap-x-3 md:gap-x-4">
+      <div className="flex items-center gap-x-3 md:gap-x-4">
         <Image
           alt="user"
           src={"/zd.jpg"}
@@ -14,8 +14,8 @@ const ConversationUser = () => {
           className="rounded-full w-[50px] h-[50px] object-center"
         />
         <div>
-          <h5 className="font-bold ">Greg James</h5>
-          <p className="text-gray-600 dark:text-gray-300 text-sm">Ok, see you later</p>
+          <h5 className="font-bold line-clamp-1 break-all">Greg James</h5>
+          <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-1 break-all">Ok, see you later</p>
         </div>
       </div>
 
