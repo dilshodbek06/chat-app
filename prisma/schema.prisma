@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String @id @default(uuid())
+  email        String @unique
+  password     String
+  firstname    String
+  profileImage String
+
+  isOnline Boolean @default(false)
+
+  conversations ConversationUser[]
+  messages      Message[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Conversation {
+  id            String    @id @default(uuid())
+  messages      Message[]
+  lastMessageId String?   @unique
+  lastMessage   Message?  @relation("LastConversationMessage", fields: [lastMessageId], references: [id], onDelete: NoAction)
+
+  conversationUsers ConversationUser[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ConversationUser {
+  id String @id @default(uuid())
+
+  hasSeenLastMessage Boolean
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, conversationId]) // Prevents duplicate user-conversation pairs
+}
+
+model Message {
+  id             String       @id @default(uuid())
+  message        String
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+
+  senderId String
+  sender   User   @relation(fields: [senderId], references: [id])
+
+  lastInConversation Conversation? @relation(name: "LastConversationMessage")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

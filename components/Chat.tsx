@@ -1,6 +1,4 @@
-import Messages from "./my/Messages";
 import MessagesContainer from "./my/Messages-container";
-import MessagesHeader from "./my/messages-header";
 import SidebarHeader from "./my/sidebar-header";
 import UsersList from "./my/Users-list";
 

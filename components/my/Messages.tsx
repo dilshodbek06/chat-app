@@ -4,8 +4,21 @@ import Image from "next/image";
 import bgImage from "../../public/pattern1.svg";
 import { SendHorizontal, Smile } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { useRef } from "react";
 
 const Messages = () => {
+  const newMessageRef = useRef<HTMLInputElement | null>(null);
+
+  const handleSendMessage = async () => {
+    if (!newMessageRef.current) return;
+    try {
+      const newMessage = newMessageRef.current.value;
+      console.log(newMessage);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div
       style={{ backgroundImage: `url(${bgImage.src})` }}
@@ -133,10 +146,14 @@ const Messages = () => {
       <footer className="relative flex px-1 md:px-8">
         <Smile className="w-5 h-5 cursor-pointer absolute left-5 md:left-11 top-3 text-gray-700 dark:text-gray-300" />
         <Input
+          ref={newMessageRef}
           placeholder="Message"
           className="rounded-md pl-11 pr-11 py-5 bg-white dark:bg-slate-700 shadow-md dark:border-slate-700"
         />
-        <SendHorizontal className="w-5 h-5 cursor-pointer absolute right-5 md:right-12 top-3 fill-sky-500 text-sky-500 dark:fill-none dark:text-gray-200" />
+        <SendHorizontal
+          onClick={handleSendMessage}
+          className="w-5 h-5 cursor-pointer absolute right-5 md:right-12 top-3 fill-sky-500 text-sky-500 dark:fill-none dark:text-gray-200"
+        />
       </footer>
     </div>
   );
