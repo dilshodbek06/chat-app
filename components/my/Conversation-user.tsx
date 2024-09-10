@@ -1,9 +1,21 @@
+"use client";
+
+import { useConversationStore } from "@/store/useConversation";
 import Image from "next/image";
 import React from "react";
 
 const ConversationUser = () => {
+  const setSelectedConversation = useConversationStore(
+    (state) => state.setSelectedConversation
+  );
+
   return (
-    <div className="py-1 px-3 flex justify-between items-center hover:bg-gray-100 dark:hover:bg-slate-600 cursor-pointer transition-all duration-200">
+    <div
+      onClick={() =>
+        setSelectedConversation({ id: "1", lastMessage: "", name: "" })
+      }
+      className="py-1 px-3 flex justify-between items-center hover:bg-gray-100 dark:hover:bg-slate-600 cursor-pointer transition-all duration-200"
+    >
       <div className="flex items-center gap-x-3 md:gap-x-4">
         <Image
           alt="user"
@@ -15,7 +27,9 @@ const ConversationUser = () => {
         />
         <div>
           <h5 className="font-bold line-clamp-1 break-all">Greg James</h5>
-          <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-1 break-all">Ok, see you later</p>
+          <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-1 break-all">
+            Ok, see you later
+          </p>
         </div>
       </div>
 

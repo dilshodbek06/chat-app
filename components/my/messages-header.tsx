@@ -1,3 +1,5 @@
+"use client";
+
 import { EllipsisVertical, Phone, Search } from "lucide-react";
 import Image from "next/image";
 

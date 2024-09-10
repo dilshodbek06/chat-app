@@ -8,9 +8,9 @@ const SidebarHeader = () => {
       <div className="w-full relative">
         <Input
           placeholder="Search..."
-          className="rounded-2xl border-0 bg-gray-100      placeholder-slate-200 dark:bg-slate-700"
+          className="rounded-2xl border-0 bg-gray-100 placeholder-slate-200 dark:bg-slate-700"
         />
-        <Search className="w-5 h-5 absolute top-2 right-3 text-gray-500"/>
+        <Search className="w-5 h-5 absolute top-2 right-3 text-gray-500" />
       </div>
     </div>
   );

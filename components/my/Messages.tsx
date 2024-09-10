@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import bgImage from "../../public/pattern1.svg";
 import { SendHorizontal, Smile } from "lucide-react";
